@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-07-15T01:01:46 IST" name="Naukri Resume Suite" finished-at="2025-07-15T01:02:08 IST" duration-ms="22270">
+    <groups>
+    </groups>
+    <test started-at="2025-07-15T01:01:46 IST" name="Resume Refresh Test" finished-at="2025-07-15T01:02:08 IST" duration-ms="22270">
+      <class name="NaukriResumeRefresher">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:NaukriResumeRefresher@41e36e46]" started-at="2025-07-15T01:01:46 IST" name="setUp" finished-at="2025-07-15T01:01:47 IST" duration-ms="1183" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="refreshResume()[pri:0, instance:NaukriResumeRefresher@41e36e46]" started-at="2025-07-15T01:01:47 IST" name="refreshResume" finished-at="2025-07-15T01:02:08 IST" duration-ms="20850" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refreshResume -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:NaukriResumeRefresher@41e36e46]" started-at="2025-07-15T01:02:08 IST" name="tearDown" finished-at="2025-07-15T01:02:08 IST" duration-ms="204" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- NaukriResumeRefresher -->
+    </test> <!-- Resume Refresh Test -->
+  </suite> <!-- Naukri Resume Suite -->
+</testng-results>
