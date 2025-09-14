@@ -22,39 +22,52 @@ public class NaukriResumeRefresher {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--incognito");
-//        options.addArguments("--headless=new");
+        // options.addArguments("--headless=new");
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
     @Test
-    public void refreshResume() throws InterruptedException {
+    public void refreshResume() {
         driver.get("https://www.naukri.com/");
         driver.manage().window().maximize();
-        Thread.sleep(3000);
 
-        driver.findElement(By.id("login_Layer")).click();
-        Thread.sleep(2000);
+        // Wait for login button and click
+        WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(By.id("login_Layer")));
+        loginBtn.click();
 
-        driver.findElement(By.xpath("//input[@placeholder='Enter your active Email ID / Username']")).sendKeys("virensingh2022@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder=\"Enter your password\"]")).sendKeys("Naukri@1234");
+        // Wait for email field
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//input[@placeholder='Enter your active Email ID / Username']")));
+        emailField.sendKeys("virensingh2022@gmail.com");
 
-        driver.findElement(By.xpath("//button[text()='Login']")).click();
-        Thread.sleep(5000);
+        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//input[@placeholder='Enter your password']")));
+        passwordField.sendKeys("Naukri@1234");
 
-        driver.findElement(By.xpath("//div[@class=\"nI-gNb-drawer__icon\"]")).click();
+        // Click login
+        WebElement loginSubmitBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//button[text()='Login']")));
+        loginSubmitBtn.click();
 
-        wait.until(ExpectedConditions.urlContains("naukri.com/mnjuser"));
-        Thread.sleep(2000);
+        // Wait for profile icon and click
+        WebElement profileIcon = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[@class='nI-gNb-drawer__icon']")));
+        profileIcon.click();
 
-        WebElement viewProfileLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='View & Update Profile']")));
+        // Wait for profile link and click
+        WebElement viewProfileLink = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//a[text()='View & Update Profile']")));
         viewProfileLink.click();
 
-        wait.until(ExpectedConditions.urlContains("naukri.com/mnjuser/profile"));
-        Thread.sleep(3000);
+        // Wait for "Update resume" button and click
+        WebElement updateResumeBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@value='Update resume']")));
+        updateResumeBtn.click();
 
-        driver.findElement(By.xpath("//input[@value=\"Update resume\"]")).click();
-        Thread.sleep(3000);
+        // Wait for file input and upload file
+        WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("attachCV")));
+        fileInput.sendKeys("C:\\Users\\91991\\IdeaProjects\\NaukriResumeUpdator\\src\\test\\java\\FileUpload\\Virender_QA3+.pdf");
 
         System.out.println("Resume refreshed successfully!");
     }
